@@ -3,8 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public interface IRepositary<TEntity> 
-        where TEntity : class
+    public interface IRepositary<TEntity>
     {
         public Task<TEntity> CreateAsync(TEntity entity);
 

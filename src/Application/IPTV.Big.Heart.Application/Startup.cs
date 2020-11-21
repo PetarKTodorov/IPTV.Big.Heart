@@ -2,6 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using IPTV.Big.Heart.Database;
+using IPTV.Big.Heart.Database.Repositories;
+using IPTV.Big.Heart.Database.Repositories.Interfaces;
+using IPTV.Big.Heart.Services.Database.Location;
+using IPTV.Big.Heart.Services.Database.Location.Interfaces;
+using IPTV.Big.Heart.Services.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,7 +32,17 @@ namespace IPTV.Big.Heart.Application
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<IPTVBigHeartContext>();
+
+            services.AddAutoMapper(typeof(AutoMapperProfile));
+
             services.AddControllers();
+
+            // Register database repositories
+            services.AddScoped(typeof(IRepositary<>), typeof(BaseRepositary<>));
+
+            // Register application services
+            this.RegisterDatabseServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +63,11 @@ namespace IPTV.Big.Heart.Application
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private void RegisterDatabseServices(IServiceCollection services)
+        {
+            services.AddTransient<ICountryService, CountryService>();
         }
     }
 }

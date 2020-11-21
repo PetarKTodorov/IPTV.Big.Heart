@@ -4,5 +4,16 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Database\IPTV.Big.Heart.Database.Repositories\IPTV.Big.Heart.Database.Repositories.csproj" />
+    <ProjectReference Include="..\..\Database\IPTV.Big.Heart.Database\IPTV.Big.Heart.Database.csproj" />
+    <ProjectReference Include="..\..\Services\IPTV.Big.Heart.Services.Database\IPTV.Big.Heart.Services.Database.csproj" />
+    <ProjectReference Include="..\..\Services\IPTV.Big.Heart.Services.Mapper\IPTV.Big.Heart.Services.Mapper.csproj" />
+  </ItemGroup>
+
 
 </Project>
