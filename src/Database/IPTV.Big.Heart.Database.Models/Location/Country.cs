@@ -10,7 +10,7 @@
     {
         public Country()
         {
-            this.TVs = new HashSet<Television>();
+            this.Televisions = new HashSet<TelevisionCountryMapping>();
             this.Users = new HashSet<User>();
         }
 
@@ -18,7 +18,7 @@
 
         public string Name { get; set; }
 
-        public ICollection<Television> TVs { get; set; }
+        public ICollection<TelevisionCountryMapping> Televisions { get; set; }
 
         public ICollection<User> Users { get; set; }
     }

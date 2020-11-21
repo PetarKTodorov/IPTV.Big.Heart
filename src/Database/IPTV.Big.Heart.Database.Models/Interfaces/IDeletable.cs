@@ -4,7 +4,7 @@
 
     public interface IDeletable
     {
-        public DateTime? DeletedOn { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
         public bool IsDeleted { get; set; }
     }

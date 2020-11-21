@@ -12,11 +12,14 @@
             this.Id = Guid.NewGuid().ToString();
             this.Categories = new HashSet<TelevisionCategoryMapping>();
             this.Streams = new HashSet<TelevisionStreamMapping>();
+            this.Countries = new HashSet<TelevisionCountryMapping>();
         }
 
         public string Id { get; set; }
 
         public string Name { get; set; }
+
+        public ICollection<TelevisionCountryMapping> Countries { get; set; }
 
         public ICollection<TelevisionCategoryMapping> Categories { get; set; }
 

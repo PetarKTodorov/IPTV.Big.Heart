@@ -8,9 +8,9 @@
     {
         public DateTime? LastModifiedAt { get; set; }
 
-        public DateTime CreatedOn { get; set; }
+        public DateTime CreatedAt { get; set; }
 
-        public DateTime? DeletedOn { get; set; }
+        public DateTime? DeletedAt { get; set; }
 
         public bool IsDeleted { get; set; }
     }
