@@ -1,5 +1,7 @@
 ﻿namespace IPTV.Big.Heart.Services.Database.User
 {
+    using System.Linq;
+
     using AutoMapper;
 
     using Interfaces;
@@ -12,6 +14,15 @@
             : base(repositary, mapper)
         {
 
+        }
+
+        public Role GetRoleByName(string name)
+        {
+            var roles = this.GetAllAsync().GetAwaiter().GetResult();
+
+            var role = roles.SingleOrDefault(r => r.Name == name);
+
+            return role;
         }
     }
 }

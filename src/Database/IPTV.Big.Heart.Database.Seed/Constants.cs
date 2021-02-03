@@ -15,5 +15,18 @@
 
         public const string AdminRole = "Administrator";
         public const string UserRole = "NormalUser";
+
+        public const string Stream1 = "http://188.35.9.12:21151/udp/260f"; // BTV Comedy
+        public const string Stream2 = "http://188.35.9.26:13031/udp/132a"; // Fox HD
+        public const string Stream3 = "http://62.149.15.98:8816/play/a0bn?auth=dimana:dimana"; // Fox HD
+        public const string Stream4 = "http://188.35.9.12:21151/udp/157a"; // HBO 2 HD
+
+        public const string Television1 = "BTV Comedy";
+        public const string Television2 = "Fox HD";
+        public const string Television3 = "HBO 2 HD";
+
+        public const string TelevisionCategory1 = "Comedy";
+        public const string TelevisionCategory2 = "Documentary";
+        public const string TelevisionCategory3 = "Action";
     }
 }

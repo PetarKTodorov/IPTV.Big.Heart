@@ -5,9 +5,9 @@
     public class TelevisionCategoryMapping : BaseModel
     {
         public Guid TelevisionId { get; set; }
-        public Television Television { get; set; }
+        public virtual Television Television { get; set; }
 
         public Guid CategoryId { get; set; }
-        public TelevisionCategory Category { get; set; }
+        public virtual TelevisionCategory Category { get; set; }
     }
 }

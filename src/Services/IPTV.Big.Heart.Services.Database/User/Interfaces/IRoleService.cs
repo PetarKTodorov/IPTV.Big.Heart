@@ -5,6 +5,6 @@
 
     public interface IRoleService : IBaseDatabaseService<Role>
     {
-
+        public Role GetRoleByName(string name);
     }
 }

@@ -14,6 +14,6 @@
 
         public string Path { get; set; }
 
-        public ICollection<TelevisionStreamMapping> Televisions { get; set; }
+        public virtual ICollection<TelevisionStreamMapping> Televisions { get; set; }
     }
 }

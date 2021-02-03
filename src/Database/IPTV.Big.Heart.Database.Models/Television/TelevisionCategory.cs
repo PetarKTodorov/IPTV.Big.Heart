@@ -13,6 +13,6 @@
 
         public string Name { get; set; }
 
-        public ICollection<TelevisionCategoryMapping> Televisions { get; set; }
+        public virtual ICollection<TelevisionCategoryMapping> Televisions { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Security.Cryptography;
+    using System.Linq;
 
     using Microsoft.AspNetCore.Cryptography.KeyDerivation;
     using AutoMapper;
@@ -16,6 +17,15 @@
             : base(repositary, mapper)
         {
 
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            var users = this.GetAllAsync().GetAwaiter().GetResult();
+
+            var user = users.SingleOrDefault(u => u.Email == email);
+
+            return user;
         }
 
         public string HashPassword(string password)

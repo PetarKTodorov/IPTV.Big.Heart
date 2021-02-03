@@ -7,9 +7,9 @@
     public class TelevisionCountryMapping : BaseModel
     {
         public Guid TelevisionId { get; set; }
-        public Television Television { get; set; }
+        public virtual Television Television { get; set; }
 
         public Guid CountryId { get; set; }
-        public Country Country { get; set; }
+        public virtual Country Country { get; set; }
     }
 }

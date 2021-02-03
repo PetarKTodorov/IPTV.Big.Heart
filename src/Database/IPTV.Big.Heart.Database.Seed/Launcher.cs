@@ -10,6 +10,7 @@
     using IPTV.Big.Heart.Database.Seed.Seeders.Interfaces;
     using IPTV.Big.Heart.Database.Seed.Seeders.Location;
     using IPTV.Big.Heart.Database.Seed.Seeders.User;
+    using IPTV.Big.Heart.Database.Seed.Seeders.Television;
 
     public static class Launcher
     {
@@ -34,6 +35,10 @@
                 new CountrySeeder(serviceProvider),
                 new UserSeeder(serviceProvider),
                 new RoleSeeder(serviceProvider),
+                new UserRoleMappingSeeder(serviceProvider),
+                new StreamSeeder(serviceProvider),
+                new TelevisionSeeder(serviceProvider),
+                new TelevisionCategorySeeder(serviceProvider),
             };
 
             return seeders;

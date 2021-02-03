@@ -6,5 +6,7 @@
     public interface IUserService : IBaseDatabaseService<User>
     {
         public string HashPassword(string password);
+
+        public User GetUserByEmail(string email);
     }
 }

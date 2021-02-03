@@ -16,10 +16,10 @@
 
         public string Name { get; set; }
 
-        public ICollection<TelevisionCountryMapping> Countries { get; set; }
+        public virtual ICollection<TelevisionCountryMapping> Countries { get; set; }
 
-        public ICollection<TelevisionCategoryMapping> Categories { get; set; }
+        public virtual ICollection<TelevisionCategoryMapping> Categories { get; set; }
 
-        public ICollection<TelevisionStreamMapping> Streams { get; set; }
+        public virtual ICollection<TelevisionStreamMapping> Streams { get; set; }
     }
 }

@@ -4,7 +4,6 @@
 
     using User;
     using Television;
-    using Interfaces;
 
     public class Country : BaseModel
     {
@@ -16,8 +15,8 @@
 
         public string Name { get; set; }
 
-        public ICollection<TelevisionCountryMapping> Televisions { get; set; }
+        public virtual ICollection<TelevisionCountryMapping> Televisions { get; set; }
 
-        public ICollection<User> Users { get; set; }
+        public virtual ICollection<User> Users { get; set; }
     }
 }

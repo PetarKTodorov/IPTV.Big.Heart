@@ -28,8 +28,8 @@
         public DateTime? EndBannedDate { get; set; }
 
         public Guid CountryId { get; set; }
-        public Country Country { get; set; }
+        public virtual Country Country { get; set; }
 
-        public ICollection<UserRoleMapping> Roles { get; set; }
+        public virtual ICollection<UserRoleMapping> Roles { get; set; }
     }
 }
