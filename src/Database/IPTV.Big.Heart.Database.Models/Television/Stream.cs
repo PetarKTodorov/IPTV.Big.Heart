@@ -5,15 +5,12 @@
 
     using Interfaces;
 
-    public class Stream : BaseModel, IDable<string>
+    public class Stream : BaseModel
     {
         public Stream()
         {
-            this.Id = Guid.NewGuid().ToString();
             this.Televisions = new HashSet<TelevisionStreamMapping>();
         }
-
-        public string Id { get; set; }
 
         public string Path { get; set; }
 

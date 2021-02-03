@@ -1,11 +1,13 @@
 ﻿namespace IPTV.Big.Heart.Database.Models.Television
 {
+    using System;
+
     public class TelevisionCategoryMapping : BaseModel
     {
-        public string TelevisionId { get; set; }
+        public Guid TelevisionId { get; set; }
         public Television Television { get; set; }
 
-        public int CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
         public TelevisionCategory Category { get; set; }
     }
 }

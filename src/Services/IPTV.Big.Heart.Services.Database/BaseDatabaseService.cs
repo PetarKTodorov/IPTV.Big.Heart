@@ -40,28 +40,40 @@
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            IEnumerable<TEntity> collection = await this.GetAllAsync();
+            IEnumerable<TEntity> collection = await this.repositary.GetAllAsync();
 
             return collection;
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync(bool isDeletedFlag)
         {
-            IEnumerable<TEntity> collection = await this.GetAllAsync(isDeletedFlag);
+            IEnumerable<TEntity> collection = await this.repositary.GetAllAsync(isDeletedFlag);
 
             return collection;
         }
 
         public async Task<TEntity> GetByIdAsync<T>(T id)
         {
-            TEntity newEntity = await this.repositary.GetByIdAsync(id);
+            TEntity entity = await this.repositary.GetByIdAsync(id);
 
-            if (newEntity == null)
+            if (entity == null)
             {
                 throw new Exception("There is no such entity.");
             }
 
-            return newEntity;
+            return entity;
+        }
+
+        public async Task<TEntity> GetByIdAsync<T>(T id, bool isDeletedFlag)
+        {
+            TEntity entity = await this.GetByIdAsync(id, isDeletedFlag);
+
+            if (entity == null)
+            {
+                throw new Exception("There is no such entity.");
+            }
+
+            return entity;
         }
 
         public async Task<TEntity> UnDeleteAsync<T>(T id)

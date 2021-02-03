@@ -5,17 +5,14 @@
 
     using Interfaces;
 
-    public class Television : BaseModel, IDable<string>
+    public class Television : BaseModel
     {
         public Television()
         {
-            this.Id = Guid.NewGuid().ToString();
             this.Categories = new HashSet<TelevisionCategoryMapping>();
             this.Streams = new HashSet<TelevisionStreamMapping>();
             this.Countries = new HashSet<TelevisionCountryMapping>();
         }
-
-        public string Id { get; set; }
 
         public string Name { get; set; }
 

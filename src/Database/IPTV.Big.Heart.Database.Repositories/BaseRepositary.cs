@@ -87,6 +87,18 @@
             return entity;
         }
 
+        public async Task<TEntity> GetByIdAsync<T>(T id, bool isDeletedFlag)
+        {
+            var entity = await this.dbSet.FindAsync(id);
+
+            if (entity?.IsDeleted != isDeletedFlag)
+            {
+                return null;
+            }
+
+            return entity;
+        }
+
         public async Task<int> SaveChangesAsync()
         {
             int countOfRowsAffected = await this.dbContext.SaveChangesAsync();

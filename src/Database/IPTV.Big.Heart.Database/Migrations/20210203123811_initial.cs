@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IPTV.Big.Heart.Database.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,8 +11,7 @@ namespace IPTV.Big.Heart.Database.Migrations
                 name: "Countries",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     LastModifiedAt = table.Column<DateTime>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     DeletedAt = table.Column<DateTime>(nullable: true),
@@ -28,8 +27,7 @@ namespace IPTV.Big.Heart.Database.Migrations
                 name: "Roles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     LastModifiedAt = table.Column<DateTime>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     DeletedAt = table.Column<DateTime>(nullable: true),
@@ -45,7 +43,7 @@ namespace IPTV.Big.Heart.Database.Migrations
                 name: "Streams",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     LastModifiedAt = table.Column<DateTime>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     DeletedAt = table.Column<DateTime>(nullable: true),
@@ -61,8 +59,7 @@ namespace IPTV.Big.Heart.Database.Migrations
                 name: "TelevisionCategories",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(nullable: false),
                     LastModifiedAt = table.Column<DateTime>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     DeletedAt = table.Column<DateTime>(nullable: true),
@@ -78,7 +75,7 @@ namespace IPTV.Big.Heart.Database.Migrations
                 name: "Televisions",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     LastModifiedAt = table.Column<DateTime>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     DeletedAt = table.Column<DateTime>(nullable: true),
@@ -94,7 +91,7 @@ namespace IPTV.Big.Heart.Database.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     LastModifiedAt = table.Column<DateTime>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     DeletedAt = table.Column<DateTime>(nullable: true),
@@ -103,11 +100,10 @@ namespace IPTV.Big.Heart.Database.Migrations
                     Email = table.Column<string>(nullable: true),
                     IsEmailConfirmed = table.Column<bool>(nullable: false),
                     PasswordHash = table.Column<string>(nullable: true),
-                    PasswardSalt = table.Column<string>(nullable: true),
                     IsBanned = table.Column<bool>(nullable: false),
                     StartBannedDate = table.Column<DateTime>(nullable: true),
                     EndBannedDate = table.Column<DateTime>(nullable: true),
-                    CountryId = table.Column<int>(nullable: false)
+                    CountryId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -124,16 +120,18 @@ namespace IPTV.Big.Heart.Database.Migrations
                 name: "TelevisionCategoryMapping",
                 columns: table => new
                 {
-                    TelevisionId = table.Column<string>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     LastModifiedAt = table.Column<DateTime>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     DeletedAt = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false)
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    TelevisionId = table.Column<Guid>(nullable: false),
+                    CategoryId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TelevisionCategoryMapping", x => new { x.TelevisionId, x.CategoryId });
+                    table.PrimaryKey("PK_TelevisionCategoryMapping", x => x.Id);
+                    table.UniqueConstraint("AK_TelevisionCategoryMapping_TelevisionId_CategoryId", x => new { x.TelevisionId, x.CategoryId });
                     table.ForeignKey(
                         name: "FK_TelevisionCategoryMapping_TelevisionCategories_CategoryId",
                         column: x => x.CategoryId,
@@ -152,16 +150,18 @@ namespace IPTV.Big.Heart.Database.Migrations
                 name: "TelevisionCountryMapping",
                 columns: table => new
                 {
-                    TelevisionId = table.Column<string>(nullable: false),
-                    CountryId = table.Column<int>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     LastModifiedAt = table.Column<DateTime>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     DeletedAt = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false)
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    TelevisionId = table.Column<Guid>(nullable: false),
+                    CountryId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TelevisionCountryMapping", x => new { x.TelevisionId, x.CountryId });
+                    table.PrimaryKey("PK_TelevisionCountryMapping", x => x.Id);
+                    table.UniqueConstraint("AK_TelevisionCountryMapping_TelevisionId_CountryId", x => new { x.TelevisionId, x.CountryId });
                     table.ForeignKey(
                         name: "FK_TelevisionCountryMapping_Countries_CountryId",
                         column: x => x.CountryId,
@@ -180,16 +180,18 @@ namespace IPTV.Big.Heart.Database.Migrations
                 name: "TelevisionStreamMapping",
                 columns: table => new
                 {
-                    TelevisionId = table.Column<string>(nullable: false),
-                    StreamId = table.Column<string>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     LastModifiedAt = table.Column<DateTime>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     DeletedAt = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false)
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    TelevisionId = table.Column<Guid>(nullable: false),
+                    StreamId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TelevisionStreamMapping", x => new { x.TelevisionId, x.StreamId });
+                    table.PrimaryKey("PK_TelevisionStreamMapping", x => x.Id);
+                    table.UniqueConstraint("AK_TelevisionStreamMapping_TelevisionId_StreamId", x => new { x.TelevisionId, x.StreamId });
                     table.ForeignKey(
                         name: "FK_TelevisionStreamMapping_Streams_StreamId",
                         column: x => x.StreamId,
@@ -208,16 +210,18 @@ namespace IPTV.Big.Heart.Database.Migrations
                 name: "UserRoleMapping",
                 columns: table => new
                 {
-                    RoleId = table.Column<int>(nullable: false),
-                    UserId = table.Column<string>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false),
                     LastModifiedAt = table.Column<DateTime>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     DeletedAt = table.Column<DateTime>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false)
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    RoleId = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserRoleMapping", x => new { x.UserId, x.RoleId });
+                    table.PrimaryKey("PK_UserRoleMapping", x => x.Id);
+                    table.UniqueConstraint("AK_UserRoleMapping_UserId_RoleId", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
                         name: "FK_UserRoleMapping_Roles_RoleId",
                         column: x => x.RoleId,

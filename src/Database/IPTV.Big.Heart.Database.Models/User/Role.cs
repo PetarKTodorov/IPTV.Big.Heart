@@ -4,14 +4,12 @@
 
     using Interfaces;
 
-    public class Role : BaseModel, IDable<int>
+    public class Role : BaseModel
     {
         public Role()
         {
             this.Users = new HashSet<UserRoleMapping>();
         }
-
-        public int Id { get; set; }
 
         public string Name { get; set; }
 

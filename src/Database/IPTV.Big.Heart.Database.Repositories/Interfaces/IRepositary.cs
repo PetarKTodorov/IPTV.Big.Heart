@@ -13,6 +13,8 @@
 
         public Task<TEntity> GetByIdAsync<T>(T id);
 
+        public Task<TEntity> GetByIdAsync<T>(T id, bool isDeletedFlag);
+
         public Task<TEntity> UpdateAsync(TEntity entity);
 
         public Task<TEntity> DeleteAsync(TEntity entity);

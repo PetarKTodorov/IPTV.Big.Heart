@@ -10,9 +10,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Database\IPTV.Big.Heart.Database.Repositories\IPTV.Big.Heart.Database.Repositories.csproj" />
+    <ProjectReference Include="..\..\Database\IPTV.Big.Heart.Database.Seed\IPTV.Big.Heart.Database.Seed.csproj" />
     <ProjectReference Include="..\..\Database\IPTV.Big.Heart.Database\IPTV.Big.Heart.Database.csproj" />
     <ProjectReference Include="..\..\Services\IPTV.Big.Heart.Services.Database\IPTV.Big.Heart.Services.Database.csproj" />
     <ProjectReference Include="..\..\Services\IPTV.Big.Heart.Services.Mapper\IPTV.Big.Heart.Services.Mapper.csproj" />
+    <ProjectReference Include="..\IPTV.Big.Heart.Application.Infrastructures\IPTV.Big.Heart.Application.Infrastructures.csproj" />
   </ItemGroup>
 
 

@@ -9,7 +9,7 @@
     {
         public void Configure(EntityTypeBuilder<TelevisionStreamMapping> builder)
         {
-            builder.HasKey(tsm => new { tsm.TelevisionId, tsm.StreamId });
+            builder.HasAlternateKey(tsm => new { tsm.TelevisionId, tsm.StreamId });
 
             builder.HasOne(tsm => tsm.Television)
                 .WithMany(t => t.Streams)

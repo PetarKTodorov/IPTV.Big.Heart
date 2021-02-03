@@ -21,7 +21,7 @@ namespace IPTV.Big.Heart.Application.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IActionResult Get()
         {
             //var createCountryBindingModel = new CreateCountryBindingModel { Name = "test" };
 

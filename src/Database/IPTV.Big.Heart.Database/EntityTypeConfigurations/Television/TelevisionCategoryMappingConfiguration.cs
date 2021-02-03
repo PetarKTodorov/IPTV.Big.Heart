@@ -9,7 +9,7 @@
     {
         public void Configure(EntityTypeBuilder<TelevisionCategoryMapping> builder)
         {
-            builder.HasKey(tcm => new { tcm.TelevisionId, tcm.CategoryId });
+            builder.HasAlternateKey(tcm => new { tcm.TelevisionId, tcm.CategoryId });
 
             builder.HasOne(tcm => tcm.Television)
                 .WithMany(t => t.Categories)

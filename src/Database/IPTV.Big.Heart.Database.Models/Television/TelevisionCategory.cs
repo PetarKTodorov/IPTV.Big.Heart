@@ -4,14 +4,12 @@
 
     using Interfaces;
 
-    public class TelevisionCategory : BaseModel, IDable<int>
+    public class TelevisionCategory : BaseModel
     {
         public TelevisionCategory()
         {
             this.Televisions = new HashSet<TelevisionCategoryMapping>();
         }
-
-        public int Id { get; set; }
 
         public string Name { get; set; }
 

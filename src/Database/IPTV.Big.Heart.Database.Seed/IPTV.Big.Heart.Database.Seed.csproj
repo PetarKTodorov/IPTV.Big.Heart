@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\DTOs\IPTV.Big.Heart.DTOs.BindingModels\IPTV.Big.Heart.DTOs.BindingModels.csproj" />
+    <ProjectReference Include="..\..\Services\IPTV.Big.Heart.Services.Database\IPTV.Big.Heart.Services.Database.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -6,15 +6,13 @@
     using Television;
     using Interfaces;
 
-    public class Country : BaseModel, IDable<int>
+    public class Country : BaseModel
     {
         public Country()
         {
             this.Televisions = new HashSet<TelevisionCountryMapping>();
             this.Users = new HashSet<User>();
         }
-
-        public int Id { get; set; }
 
         public string Name { get; set; }
 

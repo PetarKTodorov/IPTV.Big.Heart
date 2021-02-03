@@ -1,14 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using IPTV.Big.Heart.Database;
-using IPTV.Big.Heart.Database.Repositories;
-using IPTV.Big.Heart.Database.Repositories.Interfaces;
-using IPTV.Big.Heart.Services.Database.Location;
-using IPTV.Big.Heart.Services.Database.Location.Interfaces;
-using IPTV.Big.Heart.Services.Mapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,6 +6,22 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+
+using AutoMapper;
+
+using IPTV.Big.Heart.Database;
+using IPTV.Big.Heart.Database.Repositories;
+using IPTV.Big.Heart.Database.Repositories.Interfaces;
+using IPTV.Big.Heart.Database.Seed;
+using IPTV.Big.Heart.Services.Database.Location;
+using IPTV.Big.Heart.Services.Database.Location.Interfaces;
+using IPTV.Big.Heart.Services.Database.User;
+using IPTV.Big.Heart.Services.Database.User.Interfaces;
+using IPTV.Big.Heart.Services.Mapper;
+using IPTV.Big.Heart.Services.Database.Television.Interfaces;
+using IPTV.Big.Heart.Services.Database.Television;
+using Microsoft.EntityFrameworkCore;
+using IPTV.Big.Heart.Application.Infrastructures;
 
 namespace IPTV.Big.Heart.Application
 {
@@ -51,6 +56,10 @@ namespace IPTV.Big.Heart.Application
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                app.MigrateDatabaseAsync().GetAwaiter().GetResult();
+
+                app.SeedDatabaseAsync().GetAwaiter().GetResult();
             }
 
             app.UseHttpsRedirection();
@@ -67,7 +76,21 @@ namespace IPTV.Big.Heart.Application
 
         private void RegisterDatabseServices(IServiceCollection services)
         {
+            // Add location services
             services.AddTransient<ICountryService, CountryService>();
+
+            // Add user services
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IUserRoleMappingService, UserRoleMappingService>();
+
+            // Add television services
+            services.AddTransient<ITelevisionService, TelevisionService>();
+            services.AddTransient<IStreamService, StreamService>();
+            services.AddTransient<ITelevisionCategoryService, TelevisionCategoryService>();
+            services.AddTransient<ITelevisionCategoryMappingService, TelevisionCategoryMappingService>();
+            services.AddTransient<ITelevisionCountryMappingService, TelevisionCountryMappingService>();
+            services.AddTransient<ITelevisionStreamMappingService, TelevisionStreamMappingService>();
         }
     }
 }

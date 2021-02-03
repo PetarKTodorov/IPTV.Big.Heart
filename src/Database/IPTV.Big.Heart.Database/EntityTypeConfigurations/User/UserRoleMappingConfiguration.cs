@@ -9,7 +9,7 @@
     {
         public void Configure(EntityTypeBuilder<UserRoleMapping> builder)
         {
-            builder.HasKey(urm => new { urm.UserId, urm.RoleId });
+            builder.HasAlternateKey(urm => new { urm.UserId, urm.RoleId });
 
             builder.HasOne(urm => urm.User)
                 .WithMany(u => u.Roles)

@@ -21,10 +21,9 @@ namespace IPTV.Big.Heart.Database.Migrations
 
             modelBuilder.Entity("IPTV.Big.Heart.Database.Models.Location.Country", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -48,8 +47,9 @@ namespace IPTV.Big.Heart.Database.Migrations
 
             modelBuilder.Entity("IPTV.Big.Heart.Database.Models.Television.Stream", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -73,8 +73,9 @@ namespace IPTV.Big.Heart.Database.Migrations
 
             modelBuilder.Entity("IPTV.Big.Heart.Database.Models.Television.Television", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -98,10 +99,9 @@ namespace IPTV.Big.Heart.Database.Migrations
 
             modelBuilder.Entity("IPTV.Big.Heart.Database.Models.Television.TelevisionCategory", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -125,11 +125,12 @@ namespace IPTV.Big.Heart.Database.Migrations
 
             modelBuilder.Entity("IPTV.Big.Heart.Database.Models.Television.TelevisionCategoryMapping", b =>
                 {
-                    b.Property<string>("TelevisionId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -143,7 +144,12 @@ namespace IPTV.Big.Heart.Database.Migrations
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("TelevisionId", "CategoryId");
+                    b.Property<Guid>("TelevisionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasAlternateKey("TelevisionId", "CategoryId");
 
                     b.HasIndex("CategoryId");
 
@@ -152,11 +158,12 @@ namespace IPTV.Big.Heart.Database.Migrations
 
             modelBuilder.Entity("IPTV.Big.Heart.Database.Models.Television.TelevisionCountryMapping", b =>
                 {
-                    b.Property<string>("TelevisionId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CountryId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -170,7 +177,12 @@ namespace IPTV.Big.Heart.Database.Migrations
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("TelevisionId", "CountryId");
+                    b.Property<Guid>("TelevisionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasAlternateKey("TelevisionId", "CountryId");
 
                     b.HasIndex("CountryId");
 
@@ -179,11 +191,9 @@ namespace IPTV.Big.Heart.Database.Migrations
 
             modelBuilder.Entity("IPTV.Big.Heart.Database.Models.Television.TelevisionStreamMapping", b =>
                 {
-                    b.Property<string>("TelevisionId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("StreamId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -197,7 +207,15 @@ namespace IPTV.Big.Heart.Database.Migrations
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("TelevisionId", "StreamId");
+                    b.Property<Guid>("StreamId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TelevisionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasAlternateKey("TelevisionId", "StreamId");
 
                     b.HasIndex("StreamId");
 
@@ -206,10 +224,9 @@ namespace IPTV.Big.Heart.Database.Migrations
 
             modelBuilder.Entity("IPTV.Big.Heart.Database.Models.User.Role", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -233,11 +250,12 @@ namespace IPTV.Big.Heart.Database.Migrations
 
             modelBuilder.Entity("IPTV.Big.Heart.Database.Models.User.User", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CountryId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -263,9 +281,6 @@ namespace IPTV.Big.Heart.Database.Migrations
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PasswardSalt")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -284,11 +299,9 @@ namespace IPTV.Big.Heart.Database.Migrations
 
             modelBuilder.Entity("IPTV.Big.Heart.Database.Models.User.UserRoleMapping", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -302,7 +315,15 @@ namespace IPTV.Big.Heart.Database.Migrations
                     b.Property<DateTime?>("LastModifiedAt")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("UserId", "RoleId");
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasAlternateKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
 
