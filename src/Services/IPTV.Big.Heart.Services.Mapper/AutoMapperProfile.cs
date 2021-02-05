@@ -9,6 +9,7 @@
     using IPTV.Big.Heart.DTOs.BindingModels.Television;
     using IPTV.Big.Heart.DTOs.BindingModels.User;
 
+    // @TODO Make it with reflection, think about make interface end binding models implement it
     public class AutoMapperProfile : Profile
     {
         public AutoMapperProfile()
@@ -26,6 +27,12 @@
             this.CreateMap<CreateTelevisionBindingModel, Television>();
 
             this.CreateMap<CreateTelevisionCategoryBindingModel, TelevisionCategory>();
+
+            this.CreateMap<CreateTelevisionCategoryMappingBindingModel, TelevisionCategoryMapping>();
+
+            this.CreateMap<CreateTelevisionCountryMappingBindingModel, TelevisionCountryMapping>();
+
+            this.CreateMap<CreateTelevisionStreamMappingBindingModel, TelevisionStreamMapping>();
         }
     }
 }

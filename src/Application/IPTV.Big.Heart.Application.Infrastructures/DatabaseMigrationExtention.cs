@@ -14,9 +14,12 @@
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<IPTVBigHeartContext>();
 
-                //await dbContext.Database.EnsureCreatedAsync();
+                bool isDatabaseAlreadyCreated = await dbContext.Database.EnsureCreatedAsync() == false;
 
-                await dbContext.Database.MigrateAsync();
+                if (isDatabaseAlreadyCreated)
+                {
+                    await dbContext.Database.MigrateAsync();
+                }
             }
         }
     }

@@ -39,6 +39,9 @@
                 new StreamSeeder(serviceProvider),
                 new TelevisionSeeder(serviceProvider),
                 new TelevisionCategorySeeder(serviceProvider),
+                new TelevisionCategoryMappingSeeder(serviceProvider),
+                new TelevisionCountryMappingSeeder(serviceProvider),
+                new TelevisionStreamMappingSeeder(serviceProvider)
             };
 
             return seeders;

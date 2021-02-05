@@ -12,6 +12,13 @@
             builder.HasOne(u => u.Country)
                 .WithMany(c => c.Users)
                 .HasForeignKey(u => u.CountryId);
+
+            builder.HasIndex(u => u.Email)
+                .IsUnique()
+                .IsClustered(false);
+
+            builder.Property(u => u.Email)
+                .IsRequired();
         }
     }
 }
