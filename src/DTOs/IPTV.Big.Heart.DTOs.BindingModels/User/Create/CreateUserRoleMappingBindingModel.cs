@@ -1,4 +1,4 @@
-﻿namespace IPTV.Big.Heart.DTOs.BindingModels.User
+﻿namespace IPTV.Big.Heart.DTOs.BindingModels.User.Create
 {
     using System;
 

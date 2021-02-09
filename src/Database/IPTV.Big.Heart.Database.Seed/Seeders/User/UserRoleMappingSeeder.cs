@@ -5,7 +5,7 @@
     using Microsoft.Extensions.DependencyInjection;
 
     using IPTV.Big.Heart.Database.Models.User;
-    using IPTV.Big.Heart.DTOs.BindingModels.User;
+    using IPTV.Big.Heart.DTOs.BindingModels.User.Create;
     using IPTV.Big.Heart.Services.Database.User.Interfaces;
 
     public class UserRoleMappingSeeder : BaseSeeder<IUserRoleMappingService, UserRoleMapping, CreateUserRoleMappingBindingModel>

@@ -3,11 +3,11 @@
     using AutoMapper;
 
     using Database.Models.Location;
-    using DTOs.BindingModels.Location;
+    using DTOs.BindingModels.Location.Create;
     using IPTV.Big.Heart.Database.Models.Television;
     using IPTV.Big.Heart.Database.Models.User;
-    using IPTV.Big.Heart.DTOs.BindingModels.Television;
-    using IPTV.Big.Heart.DTOs.BindingModels.User;
+    using IPTV.Big.Heart.DTOs.BindingModels.Television.Create;
+    using IPTV.Big.Heart.DTOs.BindingModels.User.Create;
 
     // @TODO Make it with reflection, think about make interface end binding models implement it
     public class AutoMapperProfile : Profile

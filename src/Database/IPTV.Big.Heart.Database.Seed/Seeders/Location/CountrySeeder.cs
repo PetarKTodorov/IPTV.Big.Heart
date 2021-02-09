@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using IPTV.Big.Heart.Database.Models.Location;
-    using IPTV.Big.Heart.DTOs.BindingModels.Location;
+    using IPTV.Big.Heart.DTOs.BindingModels.Location.Create;
     using IPTV.Big.Heart.Services.Database.Location.Interfaces;
 
     public class CountrySeeder : BaseSeeder<ICountryService, Country, CreateCountryBindingModel>

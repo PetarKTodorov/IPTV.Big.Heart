@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     using IPTV.Big.Heart.Database.Models.User;
-    using IPTV.Big.Heart.DTOs.BindingModels.User;
+    using IPTV.Big.Heart.DTOs.BindingModels.User.Create;
     using IPTV.Big.Heart.Services.Database.User.Interfaces;
 
     public class RoleSeeder : BaseSeeder<IRoleService, Role, CreateRoleBindingModel>

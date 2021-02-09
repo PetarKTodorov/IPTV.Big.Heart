@@ -1,4 +1,4 @@
-﻿namespace IPTV.Big.Heart.DTOs.BindingModels.Location
+﻿namespace IPTV.Big.Heart.DTOs.BindingModels.Location.Create
 {
     public class CreateCountryBindingModel
     {

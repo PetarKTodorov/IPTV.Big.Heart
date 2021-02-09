@@ -22,6 +22,7 @@ using IPTV.Big.Heart.Services.Database.Television.Interfaces;
 using IPTV.Big.Heart.Services.Database.Television;
 using Microsoft.EntityFrameworkCore;
 using IPTV.Big.Heart.Application.Infrastructures;
+using IPTV.Big.Heart.Application.Infrastructures.Interfaces;
 
 namespace IPTV.Big.Heart.Application
 {
@@ -48,6 +49,9 @@ namespace IPTV.Big.Heart.Application
 
             // Register application services
             this.RegisterDatabseServices(services);
+
+            // Register Api Result
+            services.AddTransient<IApiResult, ApiResult>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,7 +74,9 @@ namespace IPTV.Big.Heart.Application
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "AreasDefault",
+                    pattern: "{area:exists}/{controller=Country}/{action=Get}/{id?}");
             });
         }
 

@@ -56,22 +56,12 @@
         {
             TEntity entity = await this.repositary.GetByIdAsync(id);
 
-            if (entity == null)
-            {
-                throw new Exception("There is no such entity.");
-            }
-
             return entity;
         }
 
         public async Task<TEntity> GetByIdAsync<T>(T id, bool isDeletedFlag)
         {
             TEntity entity = await this.GetByIdAsync(id, isDeletedFlag);
-
-            if (entity == null)
-            {
-                throw new Exception("There is no such entity.");
-            }
 
             return entity;
         }

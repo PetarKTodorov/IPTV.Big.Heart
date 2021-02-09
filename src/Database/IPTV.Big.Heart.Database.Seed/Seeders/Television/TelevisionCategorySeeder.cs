@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     using IPTV.Big.Heart.Database.Models.Television;
-    using IPTV.Big.Heart.DTOs.BindingModels.Television;
+    using IPTV.Big.Heart.DTOs.BindingModels.Television.Create;
     using IPTV.Big.Heart.Services.Database.Television.Interfaces;
 
     public class TelevisionCategorySeeder : BaseSeeder<ITelevisionCategoryService, TelevisionCategory, CreateTelevisionCategoryBindingModel>

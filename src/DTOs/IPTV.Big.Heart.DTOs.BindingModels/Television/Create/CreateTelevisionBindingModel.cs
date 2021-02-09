@@ -1,4 +1,4 @@
-﻿namespace IPTV.Big.Heart.DTOs.BindingModels.Television
+﻿namespace IPTV.Big.Heart.DTOs.BindingModels.Television.Create
 {
     public class CreateTelevisionBindingModel
     {
