@@ -23,6 +23,8 @@ using IPTV.Big.Heart.Services.Database.Television;
 using Microsoft.EntityFrameworkCore;
 using IPTV.Big.Heart.Application.Infrastructures;
 using IPTV.Big.Heart.Application.Infrastructures.Interfaces;
+using IPTV.Big.Heart.Common;
+using IPTV.Big.Heart.Application.Infrastructures.Middlewares;
 
 namespace IPTV.Big.Heart.Application
 {
@@ -52,6 +54,11 @@ namespace IPTV.Big.Heart.Application
 
             // Register Api Result
             services.AddTransient<IApiResult, ApiResult>();
+
+            // configure strongly typed settings object
+            services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +78,9 @@ namespace IPTV.Big.Heart.Application
             app.UseRouting();
 
             app.UseAuthorization();
+
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

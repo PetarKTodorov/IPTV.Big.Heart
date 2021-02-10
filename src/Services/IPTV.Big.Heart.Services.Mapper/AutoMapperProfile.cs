@@ -7,6 +7,7 @@
     using IPTV.Big.Heart.Database.Models.Television;
     using IPTV.Big.Heart.Database.Models.User;
     using IPTV.Big.Heart.DTOs.BindingModels.Television.Create;
+    using IPTV.Big.Heart.DTOs.BindingModels.User;
     using IPTV.Big.Heart.DTOs.BindingModels.User.Create;
 
     // @TODO Make it with reflection, think about make interface end binding models implement it
@@ -33,6 +34,9 @@
             this.CreateMap<CreateTelevisionCountryMappingBindingModel, TelevisionCountryMapping>();
 
             this.CreateMap<CreateTelevisionStreamMappingBindingModel, TelevisionStreamMapping>();
+
+            this.CreateMap<LoginBindingModel, User>()
+                .ForMember(u => u.PasswordHash, options => options.MapFrom(lbm => lbm.Password));
         }
     }
 }

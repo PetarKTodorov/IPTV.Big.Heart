@@ -10,13 +10,44 @@
     using Interfaces;
     using IPTV.Big.Heart.Database.Repositories.Interfaces;
     using IPTV.Big.Heart.Database.Models.User;
+    using System.Threading.Tasks;
+    using IPTV.Big.Heart.DTOs.BindingModels.User;
+    using System.IdentityModel.Tokens.Jwt;
+    using System.Security.Claims;
+    using System.Text;
+    using Microsoft.IdentityModel.Tokens;
+    using Microsoft.Extensions.Options;
+    using IPTV.Big.Heart.Common;
 
     public class UserService : BaseDatabaseService<User>, IUserService
     {
-        public UserService(IRepositary<User> repositary, IMapper mapper) 
+        private readonly ApplicationSettings appSettings;
+
+        public UserService(IRepositary<User> repositary, IMapper mapper, IOptions<ApplicationSettings> appSettings) 
             : base(repositary, mapper)
         {
+            this.appSettings = appSettings.Value;
+        }
 
+        public string Login(LoginBindingModel model)
+        {
+            var user = this.GetUserByUsername(model.Username);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            bool isPasswordsNotMatching = (this.HashPassword(model.Password) == user.PasswordHash) == false;
+
+            if (isPasswordsNotMatching)
+            {
+                return null;
+            }
+
+            string token = this.GenerateJwtToken(user);
+
+            return token;
         }
 
         public User GetUserByEmail(string email)
@@ -24,6 +55,15 @@
             var users = this.GetAllAsync().GetAwaiter().GetResult();
 
             var user = users.SingleOrDefault(u => u.Email == email);
+
+            return user;
+        }
+
+        public User GetUserByUsername(string username)
+        {
+            var users = this.GetAllAsync().GetAwaiter().GetResult();
+
+            var user = users.SingleOrDefault(u => u.Username == username);
 
             return user;
         }
@@ -45,6 +85,23 @@
                 numBytesRequested: 256 / 8));
 
             return hashedPassword;
+        }
+
+        private string GenerateJwtToken(User user)
+        {
+            // generate token that is valid for 2 days
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(appSettings.ApiSecret);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+                Expires = DateTime.UtcNow.AddDays(2),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            return tokenHandler.WriteToken(token);
         }
     }
 }

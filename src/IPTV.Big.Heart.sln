@@ -31,7 +31,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IPTV.Big.Heart.Database.See
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IPTV.Big.Heart.Application.Infrastructures", "Application\IPTV.Big.Heart.Application.Infrastructures\IPTV.Big.Heart.Application.Infrastructures.csproj", "{8B78C45C-7B7D-42C4-A2C4-4A25EB652AE9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPTV.Big.Heart.Application.Common", "Application\IPTV.Big.Heart.Application.Common\IPTV.Big.Heart.Application.Common.csproj", "{43EA3F8C-9004-4093-B43D-C4A95828A36C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IPTV.Big.Heart.Application.Common", "Application\IPTV.Big.Heart.Application.Common\IPTV.Big.Heart.Application.Common.csproj", "{43EA3F8C-9004-4093-B43D-C4A95828A36C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0413C4BE-B601-4112-9B52-5BB32D3B8FE1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPTV.Big.Heart.Common", "Common\IPTV.Big.Heart.Common\IPTV.Big.Heart.Common.csproj", "{B47477E9-B5E6-4EB2-894C-E3DDA62398ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +87,10 @@ Global
 		{43EA3F8C-9004-4093-B43D-C4A95828A36C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43EA3F8C-9004-4093-B43D-C4A95828A36C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43EA3F8C-9004-4093-B43D-C4A95828A36C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B47477E9-B5E6-4EB2-894C-E3DDA62398ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B47477E9-B5E6-4EB2-894C-E3DDA62398ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B47477E9-B5E6-4EB2-894C-E3DDA62398ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B47477E9-B5E6-4EB2-894C-E3DDA62398ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +107,7 @@ Global
 		{5B18039D-E700-4E17-9F0C-79F1B574E14F} = {96717B05-181A-4235-8E6A-6DAB3476AA2A}
 		{8B78C45C-7B7D-42C4-A2C4-4A25EB652AE9} = {1188D3F3-9D66-49ED-ABAE-423A8169DF6B}
 		{43EA3F8C-9004-4093-B43D-C4A95828A36C} = {1188D3F3-9D66-49ED-ABAE-423A8169DF6B}
+		{B47477E9-B5E6-4EB2-894C-E3DDA62398ED} = {0413C4BE-B601-4112-9B52-5BB32D3B8FE1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61439DD2-C742-49AC-9AAC-D52A0E50F8D2}

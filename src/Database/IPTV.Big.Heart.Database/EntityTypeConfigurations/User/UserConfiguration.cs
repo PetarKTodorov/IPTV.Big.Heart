@@ -19,6 +19,13 @@
 
             builder.Property(u => u.Email)
                 .IsRequired();
+
+            builder.HasIndex(u => u.Username)
+                .IsUnique()
+                .IsClustered(false);
+
+            builder.Property(u => u.Username)
+                .IsRequired();
         }
     }
 }

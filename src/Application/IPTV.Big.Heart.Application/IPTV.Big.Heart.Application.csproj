@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\IPTV.Big.Heart.Common\IPTV.Big.Heart.Common.csproj" />
     <ProjectReference Include="..\..\Database\IPTV.Big.Heart.Database.Repositories\IPTV.Big.Heart.Database.Repositories.csproj" />
     <ProjectReference Include="..\..\Database\IPTV.Big.Heart.Database.Seed\IPTV.Big.Heart.Database.Seed.csproj" />
     <ProjectReference Include="..\..\Database\IPTV.Big.Heart.Database\IPTV.Big.Heart.Database.csproj" />
