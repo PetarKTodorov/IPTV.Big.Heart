@@ -6,7 +6,7 @@
     using IPTV.Big.Heart.Application.Infrastructures.Interfaces;
 
     [ApiController]
-    public class BaseController : ControllerBase
+    public abstract class BaseController : ControllerBase
     {
         public BaseController(IApiResult apiResult)
         {

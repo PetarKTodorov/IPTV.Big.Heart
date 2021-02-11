@@ -10,12 +10,13 @@
             this.IsEmailConfirmed = false;
         }
 
-        public CreateUserBindingModel(string username, string email, string passwordHash, Guid countryId)
+        public CreateUserBindingModel(string username, string email, string passwordHash, string passwordSalt, Guid countryId)
             : this()
         {
             this.Username = username;
             this.Email = email;
             this.PasswordHash = passwordHash;
+            this.PasswordSalt = passwordSalt;
             this.CountryId = countryId;
         }
 
@@ -24,6 +25,9 @@
         public string Email { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
+
+        public string PasswordSalt { get; set; }
+
 
         public string PasswordHash { get; set; }
 

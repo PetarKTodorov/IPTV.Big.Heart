@@ -1,9 +1,10 @@
 ﻿namespace IPTV.Big.Heart.Database.Repositories.Interfaces
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
-    public interface IRepositary<TEntity>
+    public interface IRepository<TEntity>
     {
         public Task<TEntity> CreateAsync(TEntity entity);
 
@@ -22,5 +23,7 @@
         public Task<TEntity> UnDeleteAsync(TEntity entity);
 
         public Task<int> SaveChangesAsync();
+
+        IQueryable<TEntity> GetAll();
     }
 }

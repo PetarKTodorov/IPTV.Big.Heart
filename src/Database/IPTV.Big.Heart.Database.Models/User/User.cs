@@ -19,6 +19,8 @@
 
         public bool IsEmailConfirmed { get; set; }
 
+        public string PasswordSalt { get; set; }
+
         public string PasswordHash { get; set; }
 
         public bool IsBanned { get; set; }

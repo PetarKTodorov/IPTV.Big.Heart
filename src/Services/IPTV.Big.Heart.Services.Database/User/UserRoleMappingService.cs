@@ -8,7 +8,7 @@
 
     public class UserRoleMappingService : BaseDatabaseService<UserRoleMapping>, IUserRoleMappingService
     {
-        public UserRoleMappingService(IRepositary<UserRoleMapping> repositary, IMapper mapper) 
+        public UserRoleMappingService(IRepository<UserRoleMapping> repositary, IMapper mapper) 
             : base(repositary, mapper)
         {
 

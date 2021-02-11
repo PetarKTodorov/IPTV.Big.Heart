@@ -13,13 +13,13 @@
 
     public class JwtMiddleware
     {
-        private readonly RequestDelegate _next;
-        private readonly ApplicationSettings _appSettings;
+        private readonly RequestDelegate next;
+        private readonly ApplicationSettings appSettings;
 
         public JwtMiddleware(RequestDelegate next, IOptions<ApplicationSettings> appSettings)
         {
-            _next = next;
-            _appSettings = appSettings.Value;
+            this.next = next;
+            this.appSettings = appSettings.Value;
         }
 
         public async Task Invoke(HttpContext context, IUserService userService)
@@ -27,9 +27,11 @@
             var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
 
             if (token != null)
-                attachUserToContext(context, userService, token);
-
-            await _next(context);
+            {
+                this.attachUserToContext(context, userService, token);
+            }
+                
+            await next(context);
         }
 
         private void attachUserToContext(HttpContext context, IUserService userService, string token)
@@ -37,7 +39,7 @@
             try
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
-                var key = Encoding.ASCII.GetBytes(_appSettings.ApiSecret);
+                var key = Encoding.ASCII.GetBytes(appSettings.ApiSecret);
                 tokenHandler.ValidateToken(token, new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
@@ -49,10 +51,12 @@
                 }, out SecurityToken validatedToken);
 
                 var jwtToken = (JwtSecurityToken)validatedToken;
-                var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+                var userId = Guid.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
                 // attach user to context on successful jwt validation
-                context.Items["User"] = userService.GetByIdAsync(userId).GetAwaiter().GetResult();
+                var user = userService.GetByIdAsync(userId).GetAwaiter().GetResult();
+
+                context.Items["User"] = userService.GetUserByUsername(user.Username);
             }
             catch
             {

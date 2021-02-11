@@ -22,12 +22,14 @@
 
         public override void GenerateList()
         {
-            string passwordHash = this.Service.HashPassword(Constants.UsersPassword);
+            string passwordSalt = this.Service.GeneratePasswordSalt();
+            string passwordHash = this.Service.HashPassword(Constants.UsersPassword, passwordSalt);
+            
 
             var userList = new List<CreateUserBindingModel>
             {
-                new CreateUserBindingModel(Constants.AdminUsername, Constants.AdminEmail, passwordHash, this.GetRandomCountryId()),
-                new CreateUserBindingModel(Constants.UserUsername, Constants.UserEmail, passwordHash, this.GetRandomCountryId())
+                new CreateUserBindingModel(Constants.AdminUsername, Constants.AdminEmail, passwordHash, passwordSalt, this.GetRandomCountryId()),
+                new CreateUserBindingModel(Constants.UserUsername, Constants.UserEmail, passwordHash, passwordSalt, this.GetRandomCountryId())
             };
 
             this.ListOfDTOEntities = userList;

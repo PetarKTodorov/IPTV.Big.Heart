@@ -8,7 +8,7 @@
 
     public class StreamService : BaseDatabaseService<Stream>, IStreamService
     {
-        public StreamService(IRepositary<Stream> repositary, IMapper mapper) 
+        public StreamService(IRepository<Stream> repositary, IMapper mapper) 
             : base(repositary, mapper)
         {
 

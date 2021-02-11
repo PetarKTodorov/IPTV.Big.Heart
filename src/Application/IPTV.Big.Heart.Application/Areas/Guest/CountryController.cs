@@ -10,9 +10,9 @@
     using System.Collections.Generic;
     using IPTV.Big.Heart.Application.Infrastructures.Helpers;
     using IPTV.Big.Heart.Application.Infrastructures.Interfaces;
+    using System.Linq;
 
-    [Route(ApplicationConstants.GuestArea + "/[controller]")]
-    public class CountryController : BaseController
+    public class CountryController : BaseGuestController
     {
         private readonly ICountryService countryService;
 
@@ -22,12 +22,12 @@
             this.countryService = countryService;
         }
 
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
             var countries = await this.countryService.GetAllAsync();
 
-            this.ApiResult.Data = countries;
+            this.ApiResult.Data = countries.ToArray();
 
             return Ok(this.ApiResult);
         }

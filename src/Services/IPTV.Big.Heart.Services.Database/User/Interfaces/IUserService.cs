@@ -7,14 +7,16 @@
 
     public interface IUserService : IBaseDatabaseService<User>
     {
-        public string HashPassword(string password);
+        string HashPassword(string password, string passwordSalt);
 
-        public User GetUserByEmail(string email);
+        string GeneratePasswordSalt();
 
-        public User GetUserByUsername(string username);
+        User GetUserByEmail(string email);
+
+        User GetUserByUsername(string username);
 
         string Login(LoginBindingModel model);
 
-        //Task<string> GenerateToken(UserAuthModel user);
+        string Register(RegisterBindingModel model);
     }
 }

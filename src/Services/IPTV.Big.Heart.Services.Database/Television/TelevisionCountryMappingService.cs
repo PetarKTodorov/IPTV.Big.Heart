@@ -8,7 +8,7 @@
 
     public class TelevisionCountryMappingService : BaseDatabaseService<TelevisionCountryMapping>, ITelevisionCountryMappingService
     {
-        public TelevisionCountryMappingService(IRepositary<TelevisionCountryMapping> repositary, IMapper mapper) 
+        public TelevisionCountryMappingService(IRepository<TelevisionCountryMapping> repositary, IMapper mapper) 
             : base(repositary, mapper)
         {
 

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using AutoMapper;
@@ -11,10 +12,10 @@
 
     public abstract class BaseDatabaseService<TEntity> : IBaseDatabaseService<TEntity>
     {
-        private readonly IRepositary<TEntity> repositary;
+        private readonly IRepository<TEntity> repositary;
         private readonly IMapper mapper;
 
-        public BaseDatabaseService(IRepositary<TEntity> repositary, IMapper mapper)
+        public BaseDatabaseService(IRepository<TEntity> repositary, IMapper mapper)
         {
             this.repositary = repositary;
             this.mapper = mapper;
@@ -84,6 +85,11 @@
             dbEntity = await this.repositary.UpdateAsync(dbEntity);
 
             return dbEntity;
+        }
+
+        public IQueryable<TEntity> GetAll()
+        {
+            return this.repositary.GetAll();
         }
 
     }

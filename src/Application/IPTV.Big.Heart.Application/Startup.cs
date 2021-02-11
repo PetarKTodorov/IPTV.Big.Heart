@@ -26,6 +26,10 @@ using IPTV.Big.Heart.Application.Infrastructures.Interfaces;
 using IPTV.Big.Heart.Common;
 using IPTV.Big.Heart.Application.Infrastructures.Middlewares;
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 namespace IPTV.Big.Heart.Application
 {
     public class Startup
@@ -46,8 +50,12 @@ namespace IPTV.Big.Heart.Application
 
             services.AddControllers();
 
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
             // Register database repositories
-            services.AddScoped(typeof(IRepositary<>), typeof(BaseRepositary<>));
+            services.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
 
             // Register application services
             this.RegisterDatabseServices(services);
@@ -84,9 +92,7 @@ namespace IPTV.Big.Heart.Application
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "AreasDefault",
-                    pattern: "{area:exists}/{controller=Country}/{action=Get}/{id?}");
+                endpoints.MapControllers();
             });
         }
 

@@ -10,13 +10,13 @@
     using Interfaces;
     using Models.Interfaces;
 
-    public class BaseRepositary<TEntity> : IRepositary<TEntity>
+    public class BaseRepository<TEntity> : IRepository<TEntity>
         where TEntity : class, IBaseModel
     {
         private readonly IPTVBigHeartContext dbContext;
         private readonly DbSet<TEntity> dbSet;
 
-        public BaseRepositary(IPTVBigHeartContext dbContext)
+        public BaseRepository(IPTVBigHeartContext dbContext)
         {
             this.dbContext = dbContext;
             this.dbSet = this.dbContext.Set<TEntity>();
@@ -106,7 +106,7 @@
             return countOfRowsAffected;
         }
 
-        private IQueryable<TEntity> GetAll()
+        public IQueryable<TEntity> GetAll()
         {
             return this.dbSet.AsQueryable();
         }

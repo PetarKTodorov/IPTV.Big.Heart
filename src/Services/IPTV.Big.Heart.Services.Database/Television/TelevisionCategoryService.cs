@@ -8,7 +8,7 @@
 
     public class TelevisionCategoryService : BaseDatabaseService<TelevisionCategory>, ITelevisionCategoryService
     {
-        public TelevisionCategoryService(IRepositary<TelevisionCategory> repositary, IMapper mapper) 
+        public TelevisionCategoryService(IRepository<TelevisionCategory> repositary, IMapper mapper) 
             : base(repositary, mapper)
         {
 

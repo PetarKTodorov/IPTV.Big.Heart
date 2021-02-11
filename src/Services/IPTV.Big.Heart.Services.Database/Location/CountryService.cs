@@ -8,7 +8,7 @@
 
     public class CountryService : BaseDatabaseService<Country>, ICountryService
     {
-        public CountryService(IRepositary<Country> repositary, IMapper mapper) 
+        public CountryService(IRepository<Country> repositary, IMapper mapper) 
             : base(repositary, mapper)
         {
         }

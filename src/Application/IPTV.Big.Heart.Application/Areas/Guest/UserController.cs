@@ -8,8 +8,7 @@
     using IPTV.Big.Heart.Services.Database.User.Interfaces;
     using IPTV.Big.Heart.DTOs.BindingModels.User;
 
-    [Route(ApplicationConstants.GuestArea + "/[controller]")]
-    public class UserController : BaseController
+    public class UserController : BaseGuestController
     {
         private readonly IUserService userService;
 
@@ -26,10 +25,31 @@
 
             if (token == null)
             {
-                return BadRequest("Invalid email or password");
+                this.ApiResult.Errors.Add(ApplicationConstants.InvalidLoginMessage);
+
+                return BadRequest(this.ApiResult);
             }
 
-            return Ok("Hi");
+            this.ApiResult.Data = token;
+
+            return Ok(this.ApiResult);
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(RegisterBindingModel model)
+        {
+            var message = userService.Register(model);
+
+            if (message == null)
+            {
+                this.ApiResult.Errors.Add(ApplicationConstants.InvalidLoginMessage);
+
+                return BadRequest(this.ApiResult);
+            }
+
+            this.ApiResult.Data = message;
+
+            return Ok(this.ApiResult);
         }
 
 

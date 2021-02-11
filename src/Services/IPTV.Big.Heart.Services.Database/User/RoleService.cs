@@ -10,7 +10,7 @@
 
     public class RoleService : BaseDatabaseService<Role>, IRoleService
     {
-        public RoleService(IRepositary<Role> repositary, IMapper mapper) 
+        public RoleService(IRepository<Role> repositary, IMapper mapper) 
             : base(repositary, mapper)
         {
 

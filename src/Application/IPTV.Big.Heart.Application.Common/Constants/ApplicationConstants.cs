@@ -6,6 +6,10 @@
         public const string UserArea = "user";
         public const string AdminArea = "admin";
 
+        public const string AdminRole = "Administrator";
+        public const string UserRole = "NormalUser";
+
         public const string InvalidIdMessage = "Invalid Id";
+        public const string InvalidLoginMessage = "Invalid email or password";
     }
 }

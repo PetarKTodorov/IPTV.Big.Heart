@@ -8,7 +8,7 @@
 
     public class TelevisionStreamMappingService : BaseDatabaseService<TelevisionStreamMapping>, ITelevisionStreamMappingService
     {
-        public TelevisionStreamMappingService(IRepositary<TelevisionStreamMapping> repositary, IMapper mapper) 
+        public TelevisionStreamMappingService(IRepository<TelevisionStreamMapping> repositary, IMapper mapper) 
             : base(repositary, mapper)
         {
 
