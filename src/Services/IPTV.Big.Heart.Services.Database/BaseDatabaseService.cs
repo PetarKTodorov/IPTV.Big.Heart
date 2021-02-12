@@ -12,20 +12,21 @@
 
     public abstract class BaseDatabaseService<TEntity> : IBaseDatabaseService<TEntity>
     {
-        private readonly IRepository<TEntity> repositary;
-        private readonly IMapper mapper;
-
         public BaseDatabaseService(IRepository<TEntity> repositary, IMapper mapper)
         {
-            this.repositary = repositary;
-            this.mapper = mapper;
+            this.Repositary = repositary;
+            this.Mapper = mapper;
         }
+
+        protected IRepository<TEntity> Repositary { get; private set; }
+
+        protected IMapper Mapper { get; private set; }
 
         public async Task<TEntity> CreateAsync<DTO>(DTO entity)
         {
-            TEntity newEntity = this.mapper.Map<TEntity>(entity);
+            TEntity newEntity = this.Mapper.Map<TEntity>(entity);
 
-            newEntity = await this.repositary.CreateAsync(newEntity);
+            newEntity = await this.Repositary.CreateAsync(newEntity);
 
             return newEntity;
         }
@@ -34,35 +35,39 @@
         {
             TEntity entity = await this.GetByIdAsync(id);
 
-            entity = await this.repositary.DeleteAsync(entity);
+            entity = await this.Repositary.DeleteAsync(entity);
 
             return entity;
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        public async Task<IEnumerable<DTO>> GetAllAsync<DTO>()
         {
-            IEnumerable<TEntity> collection = await this.repositary.GetAllAsync();
+            var collectionFromDb = await this.Repositary.GetAllAsync();
+
+            IEnumerable<DTO> collection = this.Mapper.Map<IEnumerable<DTO>>(collectionFromDb);
 
             return collection;
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync(bool isDeletedFlag)
+        public async Task<IEnumerable<DTO>> GetAllAsync<DTO>(bool isDeletedFlag)
         {
-            IEnumerable<TEntity> collection = await this.repositary.GetAllAsync(isDeletedFlag);
+            var collectionFromDb = await this.Repositary.GetAllAsync(isDeletedFlag);
+
+            IEnumerable<DTO> collection = this.Mapper.Map<IEnumerable<DTO>>(collectionFromDb);
 
             return collection;
         }
 
         public async Task<TEntity> GetByIdAsync<T>(T id)
         {
-            TEntity entity = await this.repositary.GetByIdAsync(id);
+            TEntity entity = await this.Repositary.GetByIdAsync(id);
 
             return entity;
         }
 
         public async Task<TEntity> GetByIdAsync<T>(T id, bool isDeletedFlag)
         {
-            TEntity entity = await this.GetByIdAsync(id, isDeletedFlag);
+            TEntity entity = await this.Repositary.GetByIdAsync(id, isDeletedFlag);
 
             return entity;
         }
@@ -71,7 +76,7 @@
         {
             TEntity entity = await this.GetByIdAsync(id);
 
-            entity = await this.repositary.UnDeleteAsync(entity);
+            entity = await this.Repositary.UnDeleteAsync(entity);
 
             return entity;
         }
@@ -80,16 +85,16 @@
         {
             TEntity dbEntity = await this.GetByIdAsync(id);
 
-            dbEntity = this.mapper.Map<TEntity>(entity);
+            dbEntity = this.Mapper.Map(entity, dbEntity);
 
-            dbEntity = await this.repositary.UpdateAsync(dbEntity);
+            dbEntity = await this.Repositary.UpdateAsync(dbEntity);
 
             return dbEntity;
         }
 
         public IQueryable<TEntity> GetAll()
         {
-            return this.repositary.GetAll();
+            return this.Repositary.GetAll();
         }
 
     }

@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-
+    using IPTV.Big.Heart.Common;
     using IPTV.Big.Heart.Database.Models.User;
     using IPTV.Big.Heart.DTOs.BindingModels.User.Create;
     using IPTV.Big.Heart.Services.Database.User.Interfaces;
@@ -18,8 +18,8 @@
         {
             this.ListOfDTOEntities = new List<CreateRoleBindingModel>
             {
-                new CreateRoleBindingModel(Constants.AdminRole),
-                new CreateRoleBindingModel(Constants.UserRole),
+                new CreateRoleBindingModel(GlobalConstants.AdminRole),
+                new CreateRoleBindingModel(GlobalConstants.UserRole),
             };
         }
     }

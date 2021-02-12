@@ -9,6 +9,7 @@
     using IPTV.Big.Heart.DTOs.BindingModels.Television.Create;
     using IPTV.Big.Heart.Services.Database.Television.Interfaces;
     using IPTV.Big.Heart.Services.Database.Location.Interfaces;
+    using IPTV.Big.Heart.Database.Models.Location;
 
     public class TelevisionCountryMappingSeeder : BaseSeeder<ITelevisionCountryMappingService, TelevisionCountryMapping, CreateTelevisionCountryMappingBindingModel>
     {
@@ -25,7 +26,7 @@
 
         public override void GenerateList()
         {
-            var allTelevisions = this.televisionService.GetAllAsync()
+            var allTelevisions = this.televisionService.GetAllAsync<Television>()
                 .GetAwaiter()
                 .GetResult()
                 .ToArray();
@@ -34,7 +35,7 @@
             var foxHdId = allTelevisions.FirstOrDefault(television => television.Name == Constants.Television2).Id;
             var hbo2HdId = allTelevisions.FirstOrDefault(television => television.Name == Constants.Television3).Id;
 
-            var allCountries = this.countryService.GetAllAsync()
+            var allCountries = this.countryService.GetAllAsync<Country>()
                 .GetAwaiter()
                 .GetResult()
                 .ToArray();

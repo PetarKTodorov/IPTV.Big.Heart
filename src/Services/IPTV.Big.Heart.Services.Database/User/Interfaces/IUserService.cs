@@ -15,8 +15,8 @@
 
         User GetUserByUsername(string username);
 
-        string Login(LoginBindingModel model);
+        Task<string> Login(LoginBindingModel model);
 
-        string Register(RegisterBindingModel model);
+        Task<string> Register(RegisterBindingModel model);
     }
 }

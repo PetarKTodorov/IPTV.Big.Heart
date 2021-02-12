@@ -9,6 +9,7 @@
     using IPTV.Big.Heart.DTOs.BindingModels.User.Create;
     using IPTV.Big.Heart.Services.Database.User.Interfaces;
     using IPTV.Big.Heart.Services.Database.Location.Interfaces;
+    using IPTV.Big.Heart.Database.Models.Location;
 
     public class UserSeeder : BaseSeeder<IUserService, User, CreateUserBindingModel>
     {
@@ -37,7 +38,7 @@
 
         private Guid GetRandomCountryId()
         {
-            var allCountries = this.countryService.GetAllAsync(false).GetAwaiter().GetResult().ToArray();
+            var allCountries = this.countryService.GetAllAsync<Country>(false).GetAwaiter().GetResult().ToArray();
 
             int randomIndex = new Random().Next(0, allCountries.Length);
 

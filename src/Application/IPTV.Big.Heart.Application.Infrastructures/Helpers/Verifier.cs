@@ -9,7 +9,7 @@
 
     public static class Verifier
     {
-        public static Guid Id(string id, ICollection<string> errors)
+        public static Guid CheckId(string id, ICollection<string> errors)
         {
             Guid verifiedId = Guid.Empty;
 

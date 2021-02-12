@@ -11,12 +11,13 @@
     using IPTV.Big.Heart.Application.Infrastructures.Helpers;
     using IPTV.Big.Heart.Application.Infrastructures.Interfaces;
     using System.Linq;
+    using IPTV.Big.Heart.DTOs.ViewModels.Location;
 
-    public class CountryController : BaseGuestController
+    public class CountriesController : BaseGuestController
     {
         private readonly ICountryService countryService;
 
-        public CountryController(IApiResult apiResult, ICountryService countryService) 
+        public CountriesController(IApiResult apiResult, ICountryService countryService) 
             : base(apiResult)
         {
             this.countryService = countryService;
@@ -25,7 +26,7 @@
         [HttpGet("all")]
         public async Task<IActionResult> GetAll()
         {
-            var countries = await this.countryService.GetAllAsync();
+            var countries = await this.countryService.GetAllAsync<CountryViewModel>(false);
 
             this.ApiResult.Data = countries.ToArray();
 
@@ -35,14 +36,14 @@
         [HttpGet("{countryId}")]
         public async Task<IActionResult> GetById(string countryId)
         {
-            var verifiedId = Verifier.Id(countryId, this.ApiResult.Errors);
+            var verifiedId = Verifier.CheckId(countryId, this.ApiResult.Errors);
 
             if (this.ApiResult.Errors.Count != 0)
             {
                 return BadRequest(this.ApiResult);
             }
 
-            var country = await this.countryService.GetByIdAsync<Guid>(verifiedId);
+            var country = await this.countryService.GetByIdAsync<Guid>(verifiedId, false);
 
             if (country == null)
             {

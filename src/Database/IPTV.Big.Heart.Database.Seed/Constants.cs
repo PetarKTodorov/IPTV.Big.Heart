@@ -13,9 +13,6 @@
 
         public const string UsersPassword = "A!a123456";
 
-        public const string AdminRole = "Administrator";
-        public const string UserRole = "NormalUser";
-
         public const string Stream1 = "http://188.35.9.12:21151/udp/260f";
         public const string Stream2 = "http://188.35.9.26:13031/udp/132a";
         public const string Stream3 = "http://62.149.15.98:8816/play/a0bn?auth=dimana:dimana";

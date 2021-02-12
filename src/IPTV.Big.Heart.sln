@@ -35,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IPTV.Big.Heart.Application.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0413C4BE-B601-4112-9B52-5BB32D3B8FE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPTV.Big.Heart.Common", "Common\IPTV.Big.Heart.Common\IPTV.Big.Heart.Common.csproj", "{B47477E9-B5E6-4EB2-894C-E3DDA62398ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IPTV.Big.Heart.Common", "Common\IPTV.Big.Heart.Common\IPTV.Big.Heart.Common.csproj", "{B47477E9-B5E6-4EB2-894C-E3DDA62398ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IPTV.Big.Heart.DTOs.ViewModels", "DTOs\IPTV.Big.Heart.DTOs.ViewModels\IPTV.Big.Heart.DTOs.ViewModels.csproj", "{98F19D6C-268F-4428-ABF9-2F213D8FBF24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +93,10 @@ Global
 		{B47477E9-B5E6-4EB2-894C-E3DDA62398ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B47477E9-B5E6-4EB2-894C-E3DDA62398ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B47477E9-B5E6-4EB2-894C-E3DDA62398ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98F19D6C-268F-4428-ABF9-2F213D8FBF24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98F19D6C-268F-4428-ABF9-2F213D8FBF24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98F19D6C-268F-4428-ABF9-2F213D8FBF24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98F19D6C-268F-4428-ABF9-2F213D8FBF24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -108,6 +114,7 @@ Global
 		{8B78C45C-7B7D-42C4-A2C4-4A25EB652AE9} = {1188D3F3-9D66-49ED-ABAE-423A8169DF6B}
 		{43EA3F8C-9004-4093-B43D-C4A95828A36C} = {1188D3F3-9D66-49ED-ABAE-423A8169DF6B}
 		{B47477E9-B5E6-4EB2-894C-E3DDA62398ED} = {0413C4BE-B601-4112-9B52-5BB32D3B8FE1}
+		{98F19D6C-268F-4428-ABF9-2F213D8FBF24} = {67503B93-CA52-4B63-9C1F-ECC7D4F49F2F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61439DD2-C742-49AC-9AAC-D52A0E50F8D2}

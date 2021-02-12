@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Database\IPTV.Big.Heart.Database.Models\IPTV.Big.Heart.Database.Models.csproj" />
     <ProjectReference Include="..\..\DTOs\IPTV.Big.Heart.DTOs.BindingModels\IPTV.Big.Heart.DTOs.BindingModels.csproj" />
+    <ProjectReference Include="..\..\DTOs\IPTV.Big.Heart.DTOs.ViewModels\IPTV.Big.Heart.DTOs.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

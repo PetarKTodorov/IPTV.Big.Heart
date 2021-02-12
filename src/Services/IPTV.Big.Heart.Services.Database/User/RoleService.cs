@@ -18,7 +18,7 @@
 
         public Role GetRoleByName(string name)
         {
-            var roles = this.GetAllAsync().GetAwaiter().GetResult();
+            var roles = this.GetAllAsync<Role>().GetAwaiter().GetResult();
 
             var role = roles.SingleOrDefault(r => r.Name == name);
 

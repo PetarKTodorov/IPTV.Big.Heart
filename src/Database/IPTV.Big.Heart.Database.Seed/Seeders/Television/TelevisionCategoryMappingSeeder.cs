@@ -23,7 +23,7 @@
 
         public override void GenerateList()
         {
-            var allTelevisions = this.televisionService.GetAllAsync()
+            var allTelevisions = this.televisionService.GetAllAsync<Television>()
                 .GetAwaiter()
                 .GetResult()
                 .ToArray();
@@ -32,7 +32,7 @@
             var foxHdId = allTelevisions.FirstOrDefault(television => television.Name == Constants.Television2).Id;
             var hbo2HdId = allTelevisions.FirstOrDefault(television => television.Name == Constants.Television3).Id;
 
-            var allTelevisionCategories = this.televisionCategoryService.GetAllAsync()
+            var allTelevisionCategories = this.televisionCategoryService.GetAllAsync<TelevisionCategory>()
                 .GetAwaiter()
                 .GetResult()
                 .ToArray();

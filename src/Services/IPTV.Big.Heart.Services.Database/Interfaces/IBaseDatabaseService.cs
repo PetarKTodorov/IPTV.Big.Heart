@@ -8,9 +8,9 @@
     {
         public Task<TEntity> CreateAsync<DTO>(DTO entity);
 
-        public Task<IEnumerable<TEntity>> GetAllAsync();
+        public Task<IEnumerable<DTO>> GetAllAsync<DTO>();
 
-        public Task<IEnumerable<TEntity>> GetAllAsync(bool isDeletedFlag);
+        public Task<IEnumerable<DTO>> GetAllAsync<DTO>(bool isDeletedFlag);
 
         public Task<TEntity> GetByIdAsync<T>(T id);
 

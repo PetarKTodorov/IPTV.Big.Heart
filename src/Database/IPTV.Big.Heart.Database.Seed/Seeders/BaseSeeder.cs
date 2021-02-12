@@ -25,7 +25,7 @@
 
         public async Task<bool> IsAlreadyExistEntitiesAsync()
         {
-            var entities = await this.Service.GetAllAsync();
+            var entities = await this.Service.GetAllAsync<DTO>();
 
             bool isAlreadyExistEntities = entities.Any();
 

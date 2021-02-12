@@ -19,18 +19,27 @@
     using Microsoft.Extensions.Options;
     using IPTV.Big.Heart.Common;
     using Microsoft.EntityFrameworkCore;
+    using IPTV.Big.Heart.DTOs.BindingModels.User.Create;
 
     public class UserService : BaseDatabaseService<User>, IUserService
     {
         private readonly ApplicationSettings appSettings;
+        private readonly IRoleService roleService;
+        private readonly IUserRoleMappingService userRoleMappingService;
 
-        public UserService(IRepository<User> repositary, IMapper mapper, IOptions<ApplicationSettings> appSettings) 
+        public UserService(IRepository<User> repositary, 
+            IMapper mapper, 
+            IOptions<ApplicationSettings> appSettings, 
+            IRoleService roleService,
+            IUserRoleMappingService userRoleMappingService) 
             : base(repositary, mapper)
         {
             this.appSettings = appSettings.Value;
+            this.userRoleMappingService = userRoleMappingService;
+            this.roleService = roleService;
         }
 
-        public string Login(LoginBindingModel model)
+        public async Task<string> Login(LoginBindingModel model)
         {
             var user = this.GetUserByUsername(model.Username);
 
@@ -54,7 +63,7 @@
 
         public User GetUserByEmail(string email)
         {
-            var users = this.GetAllAsync().GetAwaiter().GetResult();
+            var users = this.GetAllAsync<User>().GetAwaiter().GetResult();
 
             var user = users.SingleOrDefault(u => u.Email == email);
 
@@ -122,9 +131,31 @@
             return tokenHandler.WriteToken(token);
         }
 
-        public string Register(RegisterBindingModel model)
+        public async Task<string> Register(RegisterBindingModel model)
         {
-            return null;
+            var user = this.Mapper.Map<CreateUserBindingModel>(model);
+
+            string passwordSalt = this.GeneratePasswordSalt();
+            string passwordHash = this.HashPassword(model.Password, passwordSalt);
+
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            var registeredUser = await this.CreateAsync(user);
+
+            if (registeredUser == null)
+            {
+                return $"Invalid User";
+            }
+
+            var role = this.roleService.GetRoleByName(GlobalConstants.UserRole);
+
+            var userRoleMapping = new CreateUserRoleMappingBindingModel(registeredUser.Id, role.Id);
+
+            await this.userRoleMappingService.CreateAsync(userRoleMapping);
+
+            return $"Successfully registered with username: {registeredUser.Username}.";
         }
     }
 }

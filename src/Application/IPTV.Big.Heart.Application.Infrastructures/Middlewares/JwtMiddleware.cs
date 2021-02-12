@@ -28,13 +28,13 @@
 
             if (token != null)
             {
-                this.attachUserToContext(context, userService, token);
+                this.AttachUserToContext(context, userService, token);
             }
                 
             await next(context);
         }
 
-        private void attachUserToContext(HttpContext context, IUserService userService, string token)
+        private void AttachUserToContext(HttpContext context, IUserService userService, string token)
         {
             try
             {
