@@ -29,6 +29,7 @@ using IPTV.Big.Heart.Application.Infrastructures.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.OpenApi.Models;
 
 namespace IPTV.Big.Heart.Application
 {
@@ -70,6 +71,20 @@ namespace IPTV.Big.Heart.Application
             // configure strongly typed settings object
             services.Configure<ApplicationSettings>(Configuration.GetSection("ApplicationSettings"));
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "IPTV.Big.Heart API",
+                    Version = "v1",
+                    Description = "Description for the API goes here.",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "NAMES",
+                        Email = "EMAIL",
+                    },
+                });
+            });
 
         }
 
@@ -84,6 +99,19 @@ namespace IPTV.Big.Heart.Application
 
                 app.SeedDatabaseAsync().GetAwaiter().GetResult();
             }
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "IPTV.Big.Heart API V1");
+
+                // To serve SwaggerUI at application's root page, set the RoutePrefix property to an empty string.
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseMiddleware<ExceptionMiddleware>();
 

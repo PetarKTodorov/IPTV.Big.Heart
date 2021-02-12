@@ -32,10 +32,10 @@ namespace IPTV.Big.Heart.Application.Infrastructures.Middlewares
             {
                 await HandleExceptionAsync(httpContext, due.InnerException.Message);
             }
-            catch (Exception)
-            {
-                await HandleExceptionAsync(httpContext, "Something went wrong!");
-            }
+            //catch (Exception e)
+            //{
+            //    await HandleExceptionAsync(httpContext, "Something went wrong!");
+            //}
         }
 
         private Task HandleExceptionAsync(HttpContext context, string exceptionMessage)
