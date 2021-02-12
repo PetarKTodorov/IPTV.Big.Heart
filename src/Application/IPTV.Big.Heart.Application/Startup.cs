@@ -85,14 +85,16 @@ namespace IPTV.Big.Heart.Application
                 app.SeedDatabaseAsync().GetAwaiter().GetResult();
             }
 
+            app.UseMiddleware<ExceptionMiddleware>();
+
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
-
-            // custom jwt auth middleware
-            app.UseMiddleware<JwtMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

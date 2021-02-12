@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\IPTV.Big.Heart.Common\IPTV.Big.Heart.Common.csproj" />
     <ProjectReference Include="..\IPTV.Big.Heart.Database.Common\IPTV.Big.Heart.Database.Common.csproj" />
     <ProjectReference Include="..\IPTV.Big.Heart.Database.Models\IPTV.Big.Heart.Database.Models.csproj" />
   </ItemGroup>

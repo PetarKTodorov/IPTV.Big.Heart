@@ -14,7 +14,7 @@
     {
         private readonly IUserService userService;
 
-        public UsersController(IApiResult apiResult, IUserService userService) 
+        public UsersController(IApiResult apiResult, IUserService userService)
             : base(apiResult)
         {
             this.userService = userService;
@@ -42,30 +42,18 @@
         [ValidateModelState]
         public async Task<IActionResult> Register(RegisterBindingModel model)
         {
-            try
+            var message = await userService.Register(model);
+
+            if (message == null)
             {
-                var message = await userService.Register(model);
-
-                if (message == null)
-                {
-                    this.ApiResult.Errors.Add(ApplicationConstants.InvalidLoginMessage);
-
-                    return BadRequest(this.ApiResult);
-                }
-
-                this.ApiResult.Data = message;
-
-                return Ok(this.ApiResult);
-            }
-            catch (Exception e)
-            {
-                this.ApiResult.Errors.Add(e.Message);
+                this.ApiResult.Errors.Add(ApplicationConstants.InvalidLoginMessage);
 
                 return BadRequest(this.ApiResult);
             }
-            
+
+            this.ApiResult.Data = message;
+
+            return Ok(this.ApiResult);
         }
-
-
     }
 }
