@@ -58,7 +58,7 @@ namespace IPTV.Big.Heart.Application.Areas.Admin
                 return BadRequest(this.ApiResult);
             }
 
-            var country = await this.countryService.GetByIdAsync(verifiedId);
+            var country = await this.countryService.GetByIdAsync(verifiedId, false);
 
             if (country == null)
             {
@@ -108,7 +108,7 @@ namespace IPTV.Big.Heart.Application.Areas.Admin
                 return BadRequest(this.ApiResult);
             }
 
-            var country = await this.countryService.GetByIdAsync(verifiedId);
+            var country = await this.countryService.GetByIdAsync(verifiedId, false);
 
             if (country == null)
             {

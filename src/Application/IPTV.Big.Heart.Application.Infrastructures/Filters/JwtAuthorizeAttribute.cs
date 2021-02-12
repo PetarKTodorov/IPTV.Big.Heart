@@ -1,5 +1,6 @@
 ﻿namespace IPTV.Big.Heart.Application.Infrastructures.Filters
 {
+    using IPTV.Big.Heart.Application.Infrastructures.Interfaces;
     using IPTV.Big.Heart.Database.Models.User;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -14,10 +15,13 @@
         {
             var user = (User)context.HttpContext.Items["User"];
 
+            IApiResult apiResult = new ApiResult();
+
             if (user == null)
             {
+                apiResult.Errors.Add("Unauthenticate");
                 // not logged in
-                context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+                context.Result = new JsonResult(apiResult) { StatusCode = StatusCodes.Status203NonAuthoritative };
                 return;
             }
 
@@ -37,7 +41,9 @@
 
             if (isInRole == false)
             {
-                context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+                apiResult.Errors.Add("Unauthorized");
+
+                context.Result = new JsonResult(apiResult) { StatusCode = StatusCodes.Status401Unauthorized };
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿namespace IPTV.Big.Heart.Services.Mapper
 {
+    using System.Linq;
     using AutoMapper;
 
     using Database.Models.Location;
@@ -8,9 +9,11 @@
     using IPTV.Big.Heart.Database.Models.User;
     using IPTV.Big.Heart.DTOs.BindingModels.Location.Edit;
     using IPTV.Big.Heart.DTOs.BindingModels.Television.Create;
+    using IPTV.Big.Heart.DTOs.BindingModels.Television.Edit;
     using IPTV.Big.Heart.DTOs.BindingModels.User;
     using IPTV.Big.Heart.DTOs.BindingModels.User.Create;
     using IPTV.Big.Heart.DTOs.ViewModels.Location;
+    using IPTV.Big.Heart.DTOs.ViewModels.Television;
 
     // @TODO Make it with reflection, think about make interface end binding models implement it
     public class AutoMapperProfile : Profile
@@ -43,8 +46,20 @@
 
             this.CreateMap<RegisterBindingModel, CreateUserBindingModel>().ReverseMap();
 
-            this.CreateMap<Country, CountryViewModel>().ReverseMap(); 
+            
             this.CreateMap<EditCountryBindingModel, Country>();
+            this.CreateMap<EditTelevisionBindingModel, Television>();
+
+            this.CreateMap<Country, CountryViewModel>().ReverseMap();
+            this.CreateMap<Stream, StreamViewModel>().ReverseMap();
+            this.CreateMap<TelevisionCategory, TelevisionCategoryViewModel>().ReverseMap();
+
+            //GetAllTelevisionViewModel
+            this.CreateMap<Television, GetAllTelevisionViewModel>()
+                .ForMember(vm => vm.Categoties, options => options.MapFrom(t => t.Categories.Select(x => x.Category)))
+                .ForMember(vm => vm.Countries, options => options.MapFrom(t => t.Countries.Select(x => x.Country)))
+                .ForMember(vm => vm.Streams, options => options.MapFrom(t => t.Streams.Select(x => x.Stream)))
+                .ReverseMap();
         }
     }
 }
